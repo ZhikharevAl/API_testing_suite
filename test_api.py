@@ -95,3 +95,15 @@ def test_register():
     data = response.json()
     print(data)
     assert data['token'] == 'QpwL5tke4Pnpja7X4'
+
+
+def test_login():
+    # Тест на авторизацию пользователя
+    response = requests.post('https://reqres.in/api/login', data={
+        'email': 'eve.holt@reqres.in',
+        'password': 'cityslicka'
+    })
+    assert response.status_code == 200
+    data = response.json()
+    print(data)
+    assert data['token'] == 'QpwL5tke4Pnpja7X4'
