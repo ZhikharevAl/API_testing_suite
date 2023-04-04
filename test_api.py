@@ -63,3 +63,11 @@ def test_single_user():
     assert data["data"]["email"] == "janet.weaver@reqres.in"
     assert data["data"]["first_name"] == "Janet"
     assert data["data"]["last_name"] == "Weaver"
+
+def test_list_resources():
+    # Тест на получение списка ресурсов
+    response = requests.get(f"{'https://reqres.in/api'}/unknown")
+    assert response.status_code == 200
+    data = response.json()
+    print(data)
+    assert len(data["data"]) == 6
