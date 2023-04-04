@@ -107,3 +107,12 @@ def test_login():
     data = response.json()
     print(data)
     assert data['token'] == 'QpwL5tke4Pnpja7X4'
+
+
+def test_delayed_response():
+    # Тест на получение отложенного ответа
+    response = requests.get('https://reqres.in/api/users?delay=3')
+    assert response.status_code == 200
+    data = response.json()
+    print(data)
+    assert 'data' in data
