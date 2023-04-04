@@ -1,5 +1,4 @@
 import requests
-import pytest
 
 
 def test_create_user():
@@ -64,6 +63,7 @@ def test_single_user():
     assert data["data"]["first_name"] == "Janet"
     assert data["data"]["last_name"] == "Weaver"
 
+
 def test_list_resources():
     # Тест на получение списка ресурсов
     response = requests.get(f"{'https://reqres.in/api'}/unknown")
@@ -71,3 +71,15 @@ def test_list_resources():
     data = response.json()
     print(data)
     assert len(data["data"]) == 6
+
+
+def test_single_resource():
+    # Тест на получение данных о конкретном ресурсе
+    response = requests.get(f"{'https://reqres.in/api'}/unknown/2")
+    assert response.status_code == 200
+    data = response.json()
+    print(data)
+    assert data["data"]["id"] == 2
+    assert data["data"]["name"] == "fuchsia rose"
+    assert data["data"]["year"] == 2001
+    assert data["data"]["color"] == "#C74375"
