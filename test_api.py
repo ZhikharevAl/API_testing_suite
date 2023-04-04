@@ -53,3 +53,13 @@ def test_delete_user():
     assert response.status_code == 204
 
 
+def test_single_user():
+    # Тест на получение данных о конкретном пользователе
+    response = requests.get('https://reqres.in/api/users/2')
+    assert response.status_code == 200
+    data = response.json()
+    print(data)
+    assert data["data"]["id"] == 2
+    assert data["data"]["email"] == "janet.weaver@reqres.in"
+    assert data["data"]["first_name"] == "Janet"
+    assert data["data"]["last_name"] == "Weaver"
