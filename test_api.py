@@ -116,3 +116,9 @@ def test_delayed_response():
     data = response.json()
     print(data)
     assert 'data' in data
+
+
+def test_resource_not_found():
+    # Тест на запрос несуществующего ресурса
+    response = requests.get('https://reqres.in/api/unknown/23')
+    assert response.status_code == 404
