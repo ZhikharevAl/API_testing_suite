@@ -83,3 +83,15 @@ def test_single_resource():
     assert data["data"]["name"] == "fuchsia rose"
     assert data["data"]["year"] == 2001
     assert data["data"]["color"] == "#C74375"
+
+
+def test_register():
+    # Тест на регистрацию пользователя
+    response = requests.post('https://reqres.in/api/register', data={
+        'email': 'eve.holt@reqres.in',
+        'password': 'pistol'
+    })
+    assert response.status_code == 200
+    data = response.json()
+    print(data)
+    assert data['token'] == 'QpwL5tke4Pnpja7X4'
